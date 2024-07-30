@@ -1,0 +1,20 @@
+﻿@model List<ShopBanGiay.Models.Brand>
+@{
+    ViewBag.Title = "Brands";
+}
+
+<h2>Brands</h2>
+
+<table class="table">
+    <tr>
+        <th>Brand ID</th>
+        <th>Brand Name</th>
+    </tr>
+    @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.BrandId</td>
+                    <td>@item.BrandName</td>
+                </tr>
+            }
+</table>

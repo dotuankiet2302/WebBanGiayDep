@@ -1,0 +1,65 @@
+﻿@model ShopBanGiay.Models.Product
+@{
+    ViewBag.Title = "Create Product";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Create", "Products", new { area = "Admin"}, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-6">
+            @Html.LabelFor(model => model.Name, "Tên sản phẩm")
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-6">
+            @Html.LabelFor(model => model.Price, "Giá sản phẩm")
+            @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-6">
+            @Html.LabelFor(model => model.Description, "Mô tả sản phẩm")
+            @Html.TextBoxFor(model => model.Description, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-6">
+            @Html.LabelFor(model => model.Image, "Chọn hình")
+            <input type="file" name="imageFile" id="imageFile" class="form-control" />
+            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-md-2"></div>
+        <div class="col-md-6">
+            @Html.LabelFor(model => model.BrandId, "Thương hiệu")
+            @Html.DropDownListFor(model => model.BrandId, new List<SelectListItem>()
+               {
+                    new SelectListItem() {Text = "GAFA", Value="1"},
+                    new SelectListItem() {Text = "Nike", Value="2"},
+                    new SelectListItem() {Text = "Biti's", Value="3"},
+                    new SelectListItem() {Text = "MaisonOnline", Value="4"},
+                    new SelectListItem() {Text = "Sketchers Party Mate", Value="5"},
+                    new SelectListItem() {Text = "Adidas", Value="6"},
+                    new SelectListItem() {Text = "Massimo Dutti", Value="7"},
+
+               }, "Chọn thương hiệu", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-6">
+            <button type="submit" class="btn btn-primary">Thêm SP</button>
+        </div>
+    </div>
+}

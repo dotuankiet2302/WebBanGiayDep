@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+@{
+    var userName = Context.Request.Cookies["auth"];
+    var Role = Context.Request.Cookies["role"];
+}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin page</title>
+    <link rel="stylesheet" href="styles.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+</head>
+<body>
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color:beige; font-size:large;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/admin/Home/Index" style="color:red; font-size:35px; margin-left:50px;">Admin</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left:80px;">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/admin/Products/Index">HÀNG MỚI</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                GIÀY NỮ
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: beige">
+                                <li><a class="dropdown-item" href="/admin/Products/Index?search=Giày+cao+gót">Giày cao gót</a></li>
+                                <li><a class="dropdown-item" href="/admin/Products/Index?search=Giày+thể+thao+nữ">Giày thể thao</a></li>
+                                <li><a class="dropdown-item" href="/admin/Products/Index?search=Sandal+nữ">Sandal nữ</a></li>
+                                <li><a class="dropdown-item" href="/admin/Products/Index?search=Dép+sục">Dép sục</a></li>
+                                <li><a class="dropdown-item" href="/admin/Products/Index?search=Giày+búp+bê">Giày búp bê</a></li>
+                                <li><a class="dropdown-item" href="/admin/Products/Index?search=Oxford">Oxford</a></li>
+                                <li><a class="dropdown-item" href="/admin/Products/Index?search=Boot+nữ">Boot nữ</a></li>
+                                <li><a class="dropdown-item" href="/admin/Products/Index?search=Dép+nữ">Dép nữ</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                GIÀY NAM
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: beige">
+                                <li><a class="dropdown-item" href="/admin/Products/Index?search=Giày+thể+thao+nam">Giày thể thao nam</a></li>
+                                <li><a class="dropdown-item" href="/admin/Products/Index?search=Sandal+nam">Sandal nam</a></li>
+                                <li><a class="dropdown-item" href="/admin/Products/Index?search=Dép+nam">Dép nam</a></li>
+                                <li><a class="dropdown-item" href="/admin/Products/Index?search=Giày+tây">Giày tây</a></li>
+                                <li><a class="dropdown-item" href="/admin/Products/Index?search=Boot+nam">Boot nam</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                PHỤ KIỆN
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: beige">
+                                <li><a class="dropdown-item" href="/admin/Products/Index?search=Vớ">Vớ</a></li>
+                                <li><a class="dropdown-item" href="/admin/Products/Index?search=Chai+vệ+sinh">Chai vệ sinh giày</a></li>
+                                <li><a class="dropdown-item" href="/admin/Products/Index?search=Dây">Dây giày</a></li>
+                                <li><a class="dropdown-item" href="/admin/Products/Index?search=Đế">Đế lót</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex" action="/admin/Products/Index">
+                        <input class="form-control me-3" type="search" name="search" id="search" placeholder="Search" aria-label="Search" value="@ViewBag.Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                    <h3 style="margin-right:60px; margin-top: 5px; margin-left: 80px;">
+                        @if (userName != null)
+                        {
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" style="background-color:beige;" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    @userName.Value
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="background-color:beige;">
+                                    <li><a class="dropdown-item" href="/User/Logout">Logout</a></li>
+                                </ul>
+                            </div>
+                        }
+                        @*else
+                        {
+                            <div class="dropdown">
+                                <a class="ropdown-toggle" style="background-color:beige;" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                                    </svg>
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="background-color:beige;">
+                                    <li><a class="dropdown-item" href="/User/Login">Login</a></li>
+                                    <li><a class="dropdown-item" href="/User/Register">Register</a></li>
+                                </ul>
+                            </div>
+                        }*@
+                    </h3>
+                </div>
+
+            </div>
+        </nav>
+        @*<ul class="sharecs-pc-net-bar">
+                <li class="facebook">
+                    <a href="https://www.messenger.com/t/100050530712025/" target="_blank" rel="nofollow" />
+                </li>
+            </ul>*@
+        @RenderBody()
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+﻿@model ShopBanGiay.Models.User
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("Login", "User", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-6">
+            @Html.LabelFor(model => model.UserName, "Username")
+            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-6">
+            @Html.LabelFor(model => model.Password, "Password")
+            @Html.TextBoxFor(model => model.Password, new { @class = "form-control", type = "password" })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-6">
+            <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+    </div>
+}

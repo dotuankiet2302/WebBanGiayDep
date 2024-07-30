@@ -1,0 +1,50 @@
+﻿@model ShopBanGiay.Models.User
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2 class="text-center">Register</h2>
+
+@using (Html.BeginForm("Register", "User", FormMethod.Post))
+{
+    <input type="hidden" name="role" value="user" />
+    <div class="row my-2">
+        <div class="col-2"></div>
+        <div class="col-6">
+            @Html.LabelFor(model => model.UserName, "Username")
+            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-2"></div>
+        <div class="col-6">
+            @Html.LabelFor(model => model.Password, "Password")
+            @Html.TextBoxFor(model => model.Password, new { @class = "form-control", type = "password" })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-2"></div>
+        <div class="col-6">
+            @Html.Label("Retype Password", new { @for = "retypePassword" })
+            @Html.TextBox("retypePassword", "", new { @class = "form-control", type = "password" })
+            @Html.ValidationMessage("retypePassword", "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-2"></div>
+        <div class="col-6">
+            @Html.LabelFor(model => model.EmailAddress, "Email")
+            @Html.TextBoxFor(model => model.EmailAddress, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-2"></div>
+        <div class="col-6">
+            <button type="submit" class="btn btn-primary">Đăng ký</button>
+        </div>
+    </div>
+}

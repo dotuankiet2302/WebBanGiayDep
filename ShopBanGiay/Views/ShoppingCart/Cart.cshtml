@@ -1,0 +1,47 @@
+﻿@using ShopBanGiay.Controllers
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<html>
+<body>
+    <table cellpadding="2" cellspacing="2" border="1" class="table">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Desciption</th>
+            <th>Image</th>
+            <th>Brand</th>
+            <th>Quantity</th>
+            <th>Sub Total</th>
+            <th>Option</th>
+        </tr>
+        @{
+            decimal sum = 0;
+        }
+        @foreach (Item item in (List<Item>)Session["cart"])
+        {
+            sum += item.Pro.Price * item.Quantity;
+            <tr>
+                <td>@item.Pro.Id</td>
+                <td>@item.Pro.Name</td>
+                <td>@item.Pro.Price</td>
+                <td>@item.Pro.Description</td>
+                <td><img src="~/Images/@item.Pro.Image" alt=""style="width: 80px; height:80px" /></td>
+                <td>@item.Pro.Brand.BrandName</td>
+                <td>@item.Quantity</td>
+                <td>@(item.Pro.Price * item.Quantity)</td>
+                <td>@Html.ActionLink("Delete", "Delete", "ShoppingCart", new { id = item.Pro.Id }, null)</td>
+            </tr>
+        }
+        <tr>
+            <th align="right" colspan="8">Sum</th>
+            <td>@sum</td>
+        </tr>
+    </table>
+    <br />
+    @Html.ActionLink("Continue Shopping", "Index", "Product")
+</body>
+</html>
+
